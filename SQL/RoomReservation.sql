@@ -43,4 +43,11 @@ ReservationId int PRIMARY KEY identity(1,1),
 ReservationName varchar(500),
 )
 
+create table VendetTuristike (
+VendiId int PRIMARY KEY identity(1,1),
+VendiName varchar(500),
+VendLokacioni varchar(500),
+)
 
+select * from VendetTuristike
+insert into dbo.VendetTuristike values ('BOGE','RUGOVE')
