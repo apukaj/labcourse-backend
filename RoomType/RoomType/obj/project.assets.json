@@ -1843,11 +1843,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\agoni\\source\\repos\\RoomType\\RoomType\\RoomType.csproj",
+      "projectUniqueName": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\RoomType\\RoomType\\RoomType.csproj",
       "projectName": "RoomType",
-      "projectPath": "C:\\Users\\agoni\\source\\repos\\RoomType\\RoomType\\RoomType.csproj",
+      "projectPath": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\RoomType\\RoomType\\RoomType.csproj",
       "packagesPath": "C:\\Users\\agoni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\agoni\\source\\repos\\RoomType\\RoomType\\obj\\",
+      "outputPath": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\RoomType\\RoomType\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

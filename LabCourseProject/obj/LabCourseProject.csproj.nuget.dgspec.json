@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ArbiosPukaj\\source\\repos\\LabCourseProject\\LabCourseProject\\LabCourseProject.csproj": {}
+    "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\LabCourseProject\\LabCourseProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ArbiosPukaj\\source\\repos\\LabCourseProject\\LabCourseProject\\LabCourseProject.csproj": {
+    "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\LabCourseProject\\LabCourseProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ArbiosPukaj\\source\\repos\\LabCourseProject\\LabCourseProject\\LabCourseProject.csproj",
+        "projectUniqueName": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\LabCourseProject\\LabCourseProject.csproj",
         "projectName": "LabCourseProject",
-        "projectPath": "C:\\Users\\ArbiosPukaj\\source\\repos\\LabCourseProject\\LabCourseProject\\LabCourseProject.csproj",
-        "packagesPath": "C:\\Users\\ArbiosPukaj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ArbiosPukaj\\source\\repos\\LabCourseProject\\LabCourseProject\\obj\\",
+        "projectPath": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\LabCourseProject\\LabCourseProject.csproj",
+        "packagesPath": "C:\\Users\\agoni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\LabCourseProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ArbiosPukaj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\agoni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,10 +25,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +41,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
@@ -99,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
