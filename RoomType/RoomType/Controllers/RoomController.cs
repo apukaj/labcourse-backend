@@ -147,6 +147,6 @@ namespace RoomType.Controllers
 
             return new JsonResult("Deleted Successfully");
         }
-
+     
     }
 }

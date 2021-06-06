@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+sDNMR9rS2yiCHWIe4iswIotB96VUXKKhreETVDAWQKDpz2aLg74Zs0Ey+uGeKeD4pPBrSDqKvl51jpbnPl5Mg==",
+  "dgSpecHash": "NQR81J4Y691T4HBygf718z04aDxaB7CeS0OQCXu1k9xjWQEAZ4ti67KzjOv5KeyM3kSqSWRDYS/GEI5FlTiPfA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\agoni\\source\\repos\\VendetTuristike\\VendetTuristike\\VendetTuristike.csproj",
+  "projectFilePath": "C:\\Users\\agoni\\Desktop\\SEMESTRI 4\\LAB COURSE 1\\TravelAPP\\labcourse-backend\\VendetTuristike\\VendetTuristike\\VendetTuristike.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\agoni\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\agoni\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
