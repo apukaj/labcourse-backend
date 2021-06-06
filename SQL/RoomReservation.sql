@@ -51,3 +51,13 @@ VendLokacioni varchar(500),
 
 select * from VendetTuristike
 insert into dbo.VendetTuristike values ('BOGE','RUGOVE')
+
+create table Gallery (
+PhotoId int identity(1,1),
+PhotoFile varchar(500),
+PhotoDescription varchar(500)
+)
+
+insert into Gallery values ('realmadrid.png','halamadrid')
+
+select * from Gallery
