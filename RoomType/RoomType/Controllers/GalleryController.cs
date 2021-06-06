@@ -11,32 +11,27 @@ using RoomType.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-
-
 namespace RoomType.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class GalleryController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
 
-        public RoomController(IConfiguration configuration, IWebHostEnvironment env)
+        public GalleryController(IConfiguration configuration, IWebHostEnvironment env)
         {
             _configuration = configuration;
             _env = env;
         }
 
-
         [HttpGet]
         public JsonResult Get()
         {
 
-            string query = @"select RoomId, RoomName, StatusOfRoom,
-                            convert(varchar(10),DateOfJoining,120) as DateOfJoining,
-                            convert(varchar(10),DateOfExit,120) as DateOfExit, Price
-                             from Room1";
+            string query = @"select PhotoId, PhotoFile, PhotoDescription
+                             from Gallery";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
             SqlDataReader myReader;
@@ -56,20 +51,17 @@ namespace RoomType.Controllers
             return new JsonResult(table);
         }
 
-
+        
         [HttpPost]
-        public JsonResult Post(Room app)
+        public JsonResult Post(Gallery gllr)
         {
             string query = @"
-                    insert into Room1
-                     (RoomName,StatusOfRoom,DateOfJoining,DateOfExit,Price)
+                    insert into Gallery
+                     (PhotoFile,PhotoDescription)
                      values 
                     (
-                      '" + app.RoomName + @"'
-                      ,'" + app.StatusOfRoom + @"'
-                      ,'" + app.DateOfJoining + @"'
-                      ,'" + app.DateOfExit + @"'
-                      ,'" + app.Price +@"'
+                      '" + gllr.PhotoFile + @"'
+                      ,'" + gllr.PhotoDescription + @"'
                       )
                     ";
             DataTable table = new DataTable();
@@ -92,16 +84,13 @@ namespace RoomType.Controllers
         }
 
         [HttpPut]
-        public JsonResult Put(Room app)
+        public JsonResult Put(Gallery gllr)
         {
             string query = @"
-                    update Room1 set 
-                    RoomName = '" + app.RoomName + @"'
-                    ,StatusOfRoom = '" + app.StatusOfRoom + @"'
-                    ,DateOfJoining = '" + app.DateOfJoining + @"'
-                    ,DateOfExit = '" + app.DateOfExit + @"'
-                    ,Price = '" + app.Price + @"'
-                    where RoomId = " + app.RoomId + @" 
+                    update Gallery set 
+                    PhotoFile = '" + gllr.PhotoFile + @"'
+                    ,PhotoDescription = '" + gllr.PhotoDescription + @"'
+                    where PhotoId = " + gllr.PhotoId + @" 
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
@@ -126,8 +115,8 @@ namespace RoomType.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from Room1
-                    where RoomId = " + id + @" 
+                    delete from Gallery
+                    where PhotoId = " + id + @" 
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
@@ -147,6 +136,57 @@ namespace RoomType.Controllers
 
             return new JsonResult("Deleted Successfully");
         }
-     
+
+
+        
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("realmadrid.png");
+            }
+        }
+
+        [Route("GetAllPhotoDescription")]
+        public JsonResult GetAllRoomNames()
+        {
+            string query = @"
+                    select PhotoDescription from Gallery
+                    ";
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
+            SqlDataReader myReader;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myReader = myCommand.ExecuteReader();
+                    table.Load(myReader); ;
+
+                    myReader.Close();
+                    myCon.Close();
+                }
+            }
+
+            return new JsonResult(table);
+        }
     }
 }

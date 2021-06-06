@@ -17,12 +17,12 @@ namespace RoomType.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class VendetTuristikeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
 
-        public RoomController(IConfiguration configuration, IWebHostEnvironment env)
+        public VendetTuristikeController(IConfiguration configuration, IWebHostEnvironment env)
         {
             _configuration = configuration;
             _env = env;
@@ -33,10 +33,8 @@ namespace RoomType.Controllers
         public JsonResult Get()
         {
 
-            string query = @"select RoomId, RoomName, StatusOfRoom,
-                            convert(varchar(10),DateOfJoining,120) as DateOfJoining,
-                            convert(varchar(10),DateOfExit,120) as DateOfExit, Price
-                             from Room1";
+            string query = @"select VendiId, VendiName, VendLokacioni
+                             from VendetTuristike";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
             SqlDataReader myReader;
@@ -58,18 +56,15 @@ namespace RoomType.Controllers
 
 
         [HttpPost]
-        public JsonResult Post(Room app)
+        public JsonResult Post(VendetTuristike app)
         {
             string query = @"
-                    insert into Room1
-                     (RoomName,StatusOfRoom,DateOfJoining,DateOfExit,Price)
+                    insert into VendetTuristike
+                     (VendiName,VendLokacioni)
                      values 
                     (
-                      '" + app.RoomName + @"'
-                      ,'" + app.StatusOfRoom + @"'
-                      ,'" + app.DateOfJoining + @"'
-                      ,'" + app.DateOfExit + @"'
-                      ,'" + app.Price +@"'
+                      '" + app.VendiName + @"'
+                      ,'" + app.VendLokacioni + @"'
                       )
                     ";
             DataTable table = new DataTable();
@@ -92,16 +87,13 @@ namespace RoomType.Controllers
         }
 
         [HttpPut]
-        public JsonResult Put(Room app)
+        public JsonResult Put(VendetTuristike app)
         {
             string query = @"
-                    update Room1 set 
-                    RoomName = '" + app.RoomName + @"'
-                    ,StatusOfRoom = '" + app.StatusOfRoom + @"'
-                    ,DateOfJoining = '" + app.DateOfJoining + @"'
-                    ,DateOfExit = '" + app.DateOfExit + @"'
-                    ,Price = '" + app.Price + @"'
-                    where RoomId = " + app.RoomId + @" 
+                    update VendetTuristike set 
+                    VendiName = '" + app.VendiName + @"'
+                    ,VendLokacioni = '" + app.VendLokacioni + @"'
+                    where VendiId = " + app.VendiId + @" 
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
@@ -126,8 +118,8 @@ namespace RoomType.Controllers
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from Room1
-                    where RoomId = " + id + @" 
+                    delete from VendetTuristike
+                    where VendiId = " + id + @" 
                     ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
@@ -147,6 +139,6 @@ namespace RoomType.Controllers
 
             return new JsonResult("Deleted Successfully");
         }
-     
+
     }
 }

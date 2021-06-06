@@ -1,44 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using RoomType.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using LlojetEVendeveTuristike.Models;
 
-
-
-namespace RoomType.Controllers
+namespace LlojetEVendeveTuristike.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : ControllerBase
+    public class MonumentetHistorikeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly IWebHostEnvironment _env;
 
-        public RoomController(IConfiguration configuration, IWebHostEnvironment env)
+        public MonumentetHistorikeController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _env = env;
         }
-
 
         [HttpGet]
         public JsonResult Get()
         {
-
-            string query = @"select RoomId, RoomName, StatusOfRoom,
-                            convert(varchar(10),DateOfJoining,120) as DateOfJoining,
-                            convert(varchar(10),DateOfExit,120) as DateOfExit, Price
-                             from Room1";
+            string query = @"
+                    select MonumentiId, EmriMonumentit, EmriLokacionit from MonumentetHistorike";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("LlojetEVendeveTuristikeAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -58,22 +48,15 @@ namespace RoomType.Controllers
 
 
         [HttpPost]
-        public JsonResult Post(Room app)
+        public JsonResult Post(MonumentetHistorike mhs)
         {
             string query = @"
-                    insert into Room1
-                     (RoomName,StatusOfRoom,DateOfJoining,DateOfExit,Price)
-                     values 
-                    (
-                      '" + app.RoomName + @"'
-                      ,'" + app.StatusOfRoom + @"'
-                      ,'" + app.DateOfJoining + @"'
-                      ,'" + app.DateOfExit + @"'
-                      ,'" + app.Price +@"'
-                      )
+                    insert into MonumentetHistorike values 
+                    ('" + mhs.EmriMonumentit + @"',
+                     '" + mhs.EmriLokacionit + @"')
                     ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("LlojetEVendeveTuristikeAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -91,20 +74,18 @@ namespace RoomType.Controllers
             return new JsonResult("Added Successfully");
         }
 
+
         [HttpPut]
-        public JsonResult Put(Room app)
+        public JsonResult Put(MonumentetHistorike mhs)
         {
             string query = @"
-                    update Room1 set 
-                    RoomName = '" + app.RoomName + @"'
-                    ,StatusOfRoom = '" + app.StatusOfRoom + @"'
-                    ,DateOfJoining = '" + app.DateOfJoining + @"'
-                    ,DateOfExit = '" + app.DateOfExit + @"'
-                    ,Price = '" + app.Price + @"'
-                    where RoomId = " + app.RoomId + @" 
+                    update MonumentetHistorike set 
+                    EmriMonumentit = '" + mhs.EmriMonumentit + @"'
+                    EmriLokacionit = '" + mhs.EmriLokacionit + @"'
+                    where MonumentiId = " + mhs.MonumentiId + @" 
                     ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("LlojetEVendeveTuristikeAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -122,15 +103,16 @@ namespace RoomType.Controllers
             return new JsonResult("Updated Successfully");
         }
 
+
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
             string query = @"
-                    delete from Room1
-                    where RoomId = " + id + @" 
+                    delete from MonumentetHistorike
+                    where MonumentiId = " + id + @" 
                     ";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("TravelAppCon");
+            string sqlDataSource = _configuration.GetConnectionString("LlojetEVendeveTuristikeAppCon");
             SqlDataReader myReader;
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -147,6 +129,5 @@ namespace RoomType.Controllers
 
             return new JsonResult("Deleted Successfully");
         }
-     
     }
 }
