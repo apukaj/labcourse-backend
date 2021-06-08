@@ -12,48 +12,48 @@ namespace LabCourseProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccommodationsController : ControllerBase
+    public class RestaurantTypesController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public AccommodationsController(DataContext context)
+        public RestaurantTypesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: api/Accommodations
+        // GET: api/RestaurantTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodation()
+        public async Task<ActionResult<IEnumerable<RestaurantType>>> GetRestaurantType()
         {
-            return await _context.Accomodation.ToListAsync();
+            return await _context.RestaurantType.ToListAsync();
         }
 
-        // GET: api/Accommodations/5
+        // GET: api/RestaurantTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Accommodation>> GetAccommodation(int id)
+        public async Task<ActionResult<RestaurantType>> GetRestaurantType(int id)
         {
-            var accommodation = await _context.Accomodation.FindAsync(id);
+            var restaurantType = await _context.RestaurantType.FindAsync(id);
 
-            if (accommodation == null)
+            if (restaurantType == null)
             {
                 return NotFound();
             }
 
-            return accommodation;
+            return restaurantType;
         }
 
-        // PUT: api/Accommodations/5
+        // PUT: api/RestaurantTypes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccommodation(int id, Accommodation accommodation)
+        public async Task<IActionResult> PutRestaurantType(int id, RestaurantType restaurantType)
         {
-            if (id != accommodation.id)
+            if (id != restaurantType.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(accommodation).State = EntityState.Modified;
+            _context.Entry(restaurantType).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace LabCourseProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccommodationExists(id))
+                if (!RestaurantTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace LabCourseProject.Controllers
             return NoContent();
         }
 
-        // POST: api/Accommodations
+        // POST: api/RestaurantTypes
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Accommodation>> PostAccommodation(Accommodation accommodation)
+        public async Task<ActionResult<RestaurantType>> PostRestaurantType(RestaurantType restaurantType)
         {
-            _context.Accomodation.Add(accommodation);
+            _context.RestaurantType.Add(restaurantType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAccommodation", new { id = accommodation.id }, accommodation);
+            return CreatedAtAction("GetRestaurantType", new { id = restaurantType.id }, restaurantType);
         }
 
-        // DELETE: api/Accommodations/5
+        // DELETE: api/RestaurantTypes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Accommodation>> DeleteAccommodation(int id)
+        public async Task<ActionResult<RestaurantType>> DeleteRestaurantType(int id)
         {
-            var accommodation = await _context.Accomodation.FindAsync(id);
-            if (accommodation == null)
+            var restaurantType = await _context.RestaurantType.FindAsync(id);
+            if (restaurantType == null)
             {
                 return NotFound();
             }
 
-            _context.Accomodation.Remove(accommodation);
+            _context.RestaurantType.Remove(restaurantType);
             await _context.SaveChangesAsync();
 
-            return accommodation;
+            return restaurantType;
         }
 
-        private bool AccommodationExists(int id)
+        private bool RestaurantTypeExists(int id)
         {
-            return _context.Accomodation.Any(e => e.id == id);
+            return _context.RestaurantType.Any(e => e.id == id);
         }
     }
 }

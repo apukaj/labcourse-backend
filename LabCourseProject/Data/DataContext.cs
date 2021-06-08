@@ -18,6 +18,7 @@ namespace LabCourseProject.Data
         public DbSet<LabCourseProject.Models.AccommodationType> AccommodationType { get; set; }
         public DbSet<LabCourseProject.Models.AccommodationFacility> AccomodationFacility { get; set; }
         public DbSet<LabCourseProject.Models.Accommodation> Accomodation { get; set; }
+        public DbSet<LabCourseProject.Models.RestaurantType> RestaurantType { get; set; }
         
     }
 }

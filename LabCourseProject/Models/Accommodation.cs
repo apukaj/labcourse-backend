@@ -10,9 +10,10 @@ namespace LabCourseProject.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public City city { get; set; }
+        public string city { get; set; }
         public string address { get; set; }
-        public AccommodationType type { get; set; }
-        public List<AccommodationFacility> facilities { get; set; }
+        public string type { get; set; }
+        [NotMapped]
+        public List<string> facilities { get; set; }
     }
 }
