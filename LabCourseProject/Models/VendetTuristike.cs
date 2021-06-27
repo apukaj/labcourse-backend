@@ -8,7 +8,6 @@ namespace LabCourseProject.Models
 {
     public class VendetTuristike
     {
-        [Key]
         public int Id
         {
             get; set;

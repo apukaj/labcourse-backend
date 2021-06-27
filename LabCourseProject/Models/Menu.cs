@@ -7,7 +7,6 @@ namespace LabCourseProject.Models
 {
     public class Menu
     {
-        [System.ComponentModel.DataAnnotations.Key]
         public int id { get; set; }
         public string name { get; set; }
             

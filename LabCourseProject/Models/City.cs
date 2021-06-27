@@ -8,7 +8,6 @@ namespace LabCourseProject.Models
 {
     public class City
     {
-        [Key]
         public int id { get; set; }
         public string name { get; set; }
     }

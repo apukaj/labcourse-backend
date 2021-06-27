@@ -23,16 +23,16 @@ namespace LabCourseProject.Controllers
 
         // GET: api/Accommodations
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccomodation()
+        public async Task<ActionResult<IEnumerable<Accommodation>>> GetAccommodation()
         {
-            return await _context.Accomodation.ToListAsync();
+            return await _context.Accommodation.ToListAsync();
         }
 
         // GET: api/Accommodations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Accommodation>> GetAccommodation(int id)
         {
-            var accommodation = await _context.Accomodation.FindAsync(id);
+            var accommodation = await _context.Accommodation.FindAsync(id);
 
             if (accommodation == null)
             {
@@ -80,7 +80,7 @@ namespace LabCourseProject.Controllers
         [HttpPost]
         public async Task<ActionResult<Accommodation>> PostAccommodation(Accommodation accommodation)
         {
-            _context.Accomodation.Add(accommodation);
+            _context.Accommodation.Add(accommodation);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAccommodation", new { id = accommodation.id }, accommodation);
@@ -90,13 +90,13 @@ namespace LabCourseProject.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Accommodation>> DeleteAccommodation(int id)
         {
-            var accommodation = await _context.Accomodation.FindAsync(id);
+            var accommodation = await _context.Accommodation.FindAsync(id);
             if (accommodation == null)
             {
                 return NotFound();
             }
 
-            _context.Accomodation.Remove(accommodation);
+            _context.Accommodation.Remove(accommodation);
             await _context.SaveChangesAsync();
 
             return accommodation;
@@ -104,7 +104,7 @@ namespace LabCourseProject.Controllers
 
         private bool AccommodationExists(int id)
         {
-            return _context.Accomodation.Any(e => e.id == id);
+            return _context.Accommodation.Any(e => e.id == id);
         }
     }
 }

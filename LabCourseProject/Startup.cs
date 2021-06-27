@@ -40,10 +40,13 @@ namespace LabCourseProject
                     .AddIdentityServerJwt();
 
             services.AddDbContext<IdentityContext>(opt =>
-                                               opt.UseInMemoryDatabase("Identities"));
+                opt.UseSqlServer("data source=localhost; database=Tourism; persist security info = True; Integrated Security = SSPI;"));
+
+            //services.AddDbContext<DataContext>(opt =>
+            //                                opt.UseInMemoryDatabase("Information"));
 
             services.AddDbContext<DataContext>(opt =>
-                                            opt.UseInMemoryDatabase("Information"));
+                opt.UseSqlServer("data source=localhost; database=Tourism; persist security info = True; Integrated Security = SSPI;"));
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityContext>();
 

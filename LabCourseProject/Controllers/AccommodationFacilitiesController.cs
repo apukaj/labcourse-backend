@@ -21,39 +21,39 @@ namespace LabCourseProject.Controllers
             _context = context;
         }
 
-        // GET: api/AccomodationFacilities
+        // GET: api/AccommodationFacilities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AccommodationFacility>>> GetAccomodationFacility()
+        public async Task<ActionResult<IEnumerable<AccommodationFacility>>> GetAccommodationFacility()
         {
-            return await _context.AccomodationFacility.ToListAsync();
+            return await _context.AccommodationFacility.ToListAsync();
         }
 
-        // GET: api/AccomodationFacilities/5
+        // GET: api/AccommodationFacilities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<AccommodationFacility>> GetAccomodationFacility(int id)
+        public async Task<ActionResult<AccommodationFacility>> GetAccommodationFacility(int id)
         {
-            var accomodationFacility = await _context.AccomodationFacility.FindAsync(id);
+            var accommodationFacility = await _context.AccommodationFacility.FindAsync(id);
 
-            if (accomodationFacility == null)
+            if (accommodationFacility == null)
             {
                 return NotFound();
             }
 
-            return accomodationFacility;
+            return accommodationFacility;
         }
 
-        // PUT: api/AccomodationFacilities/5
+        // PUT: api/AccommodationFacilities/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccomodationFacility(int id, AccommodationFacility accomodationFacility)
+        public async Task<IActionResult> PutAccommodationFacility(int id, AccommodationFacility accommodationFacility)
         {
-            if (id != accomodationFacility.id)
+            if (id != accommodationFacility.id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(accomodationFacility).State = EntityState.Modified;
+            _context.Entry(accommodationFacility).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace LabCourseProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccomodationFacilityExists(id))
+                if (!AccommodationFacilityExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace LabCourseProject.Controllers
             return NoContent();
         }
 
-        // POST: api/AccomodationFacilities
+        // POST: api/AccommodationFacilities
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<AccommodationFacility>> PostAccomodationFacility(AccommodationFacility accomodationFacility)
+        public async Task<ActionResult<AccommodationFacility>> PostAccommodationFacility(AccommodationFacility accommodationFacility)
         {
-            _context.AccomodationFacility.Add(accomodationFacility);
+            _context.AccommodationFacility.Add(accommodationFacility);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAccomodationFacility", new { id = accomodationFacility.id }, accomodationFacility);
+            return CreatedAtAction("GetAccommodationFacility", new { id = accommodationFacility.id }, accommodationFacility);
         }
 
-        // DELETE: api/AccomodationFacilities/5
+        // DELETE: api/AccommodationFacilities/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<AccommodationFacility>> DeleteAccomodationFacility(int id)
+        public async Task<ActionResult<AccommodationFacility>> DeleteAccommodationFacility(int id)
         {
-            var accomodationFacility = await _context.AccomodationFacility.FindAsync(id);
-            if (accomodationFacility == null)
+            var accommodationFacility = await _context.AccommodationFacility.FindAsync(id);
+            if (accommodationFacility == null)
             {
                 return NotFound();
             }
 
-            _context.AccomodationFacility.Remove(accomodationFacility);
+            _context.AccommodationFacility.Remove(accommodationFacility);
             await _context.SaveChangesAsync();
 
-            return accomodationFacility;
+            return accommodationFacility;
         }
 
-        private bool AccomodationFacilityExists(int id)
+        private bool AccommodationFacilityExists(int id)
         {
-            return _context.AccomodationFacility.Any(e => e.id == id);
+            return _context.AccommodationFacility.Any(e => e.id == id);
         }
     }
 }
