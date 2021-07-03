@@ -23,7 +23,7 @@ namespace LabCourseProject.Services
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<AuthenticationResult> RegisterAsync(string email, string password)
+        public async Task<AuthenticationResult> RegisterAsync(string email, string username, string password)
         {
             var existingUser = await _userManager.FindByEmailAsync(email);
 
@@ -38,7 +38,7 @@ namespace LabCourseProject.Services
             var newUser = new IdentityUser
             {
                 Email = email,
-                UserName = email
+                UserName = username
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, password);

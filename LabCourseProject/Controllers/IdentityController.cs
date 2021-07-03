@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using LabCourseProject.Contracts.Requests;
 using LabCourseProject.Contracts.Responses;
+using LabCourseProject.Extensions;
 using LabCourseProject.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LabCourseProject.Controllers
@@ -14,11 +19,14 @@ namespace LabCourseProject.Controllers
     [ApiController]
     public class IdentityController : ControllerBase
     {
+        private readonly UserManager<IdentityUser> _userManager;
+
         private readonly IIdentityService _identityService;
 
-        public IdentityController(IIdentityService identityService)
+        public IdentityController(IIdentityService identityService, UserManager<IdentityUser> userManager)
         {
             _identityService = identityService;
+            _userManager = userManager;
         }
 
         [HttpPost("register")]
@@ -31,7 +39,7 @@ namespace LabCourseProject.Controllers
                     Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage))
                 });
             }
-            var registerResponse = await _identityService.RegisterAsync(request.Email, request.Password);
+            var registerResponse = await _identityService.RegisterAsync(request.Email , request.UserName, request.Password);
 
             if (!registerResponse.Success)
             {
@@ -64,6 +72,19 @@ namespace LabCourseProject.Controllers
             {
                 Token = registerResponse.Token
             });
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetUserData()
+        {
+            // to get current user ID
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // to get current user info
+            var user = await _userManager.FindByIdAsync(userId);
+            var a = HttpContext.GetUserId();
+
+            return Ok(User);
         }
     }
 }

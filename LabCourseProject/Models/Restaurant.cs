@@ -13,6 +13,7 @@ namespace LabCourseProject.Models
         public string city { get; set; }
         public string address { get; set; }
         public string type { get; set; }
+        public string image { get; set; }
         [NotMapped]
         public List<string> menus { get; set; }
     }

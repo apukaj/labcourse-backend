@@ -39,6 +39,12 @@ namespace LabCourseProject.Data
         public DbSet<LabCourseProject.Models.Monument> Monument { get; set; }
         public DbSet<LabCourseProject.Models.Restaurant> Restaurant { get; set; }
         public DbSet<LabCourseProject.Models.BusinessType> BusinessType { get; set; }
+        public DbSet<LabCourseProject.Models.Shopping> Shopping { get; set; }
+        public DbSet<LabCourseProject.Models.ShoppingFacility> ShoppingFacility { get; set; }
+        public DbSet<LabCourseProject.Models.Promotion> Promotion { get; set; }
+        public DbSet<LabCourseProject.Models.AccommodationReservation> AccommodationReservation { get; set; }
+        public DbSet<LabCourseProject.Models.RestaurantReservation> RestaurantReservation { get; set; }
+        public DbSet<LabCourseProject.Models.Image> Image { get; set; }
         
     }
 }
